@@ -1,0 +1,3 @@
+#!/bin/sh
+echo -e "Output uname:[uid]\n=========================="; 
+cat /etc/passwd | awk -F":" '{ print $1 ":[" $3 "]"}' | sort

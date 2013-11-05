@@ -1,0 +1,20 @@
+#!/bin/bash
+username='abernstein'
+home_folder="/home/$username/"
+curr_hostname=`hostname`
+servers="g1tlnotesweb001.test.glbt1.gdg g1dlfteweb01.dev.glbt1.gdg g1tlfteweb01.test.glbt1.gdg g1dlnotesweb001.dev.glbt1.gdg"
+contents="bin misc .bashrc .bash_profile"
+
+for server in ${servers}
+do
+	if [ "$server" != "$curr_hostname" ] 
+	then
+		#progress='';
+		for content in ${contents} 
+		do
+			#progress+=".";
+			rsync -avz -e 'ssh' $home_folder$content $username@$server:$home_folder;
+		done;
+		#echo $progress;
+	fi;
+done;

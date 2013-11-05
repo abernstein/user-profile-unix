@@ -1,0 +1,2 @@
+#!/bin/bash
+mysql -h $1 -u fax2email -pfax2email

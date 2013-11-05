@@ -1,0 +1,54 @@
+[user]
+	name = Aaron Bernstein
+	email = abernstein@godaddy.com
+[core]
+	whitespace = -trailing-space,-space-before-tab
+	autocrlf = input
+	pager = less -r
+[apply]
+	whitespace = fix
+[help]
+	autocorrect = 1
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[alias]
+	st = status -s -b
+	ci = commit
+    	co = checkout
+    	d = diff
+    	dc = diff --cached
+    	b = branch -vv
+    	bc = branch --contains
+    	f = fetch --all --tags
+    	r = rebase
+    	re = reset --hard @{upstream}
+    	short = rev-parse --short
+    	m = merge --no-ff
+	l = log --oneline --decorate
+    	ll = log --stat --decorate --abbrev-commit --date=relative
+    	lll = log -p --stat --decorate --abbrev-commit --date=relative
+    	llll = "!sh -c 'git lll $@ \
+        	| gvim - -R -v -c \"set ft=git\" -c \"set fdm=syntax\"' -"
+
+    	rl = reflog --date=relative
+    	stat = diff --stat
+	
+	# Open all modified files in EDITOR
+    	editm = "!$EDITOR $(git ls-files -m)"
+[push]
+	default = simple
+[merge]
+	tool = vimdiff
