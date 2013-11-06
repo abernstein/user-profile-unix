@@ -7,7 +7,10 @@ class user-profile-unix::config (
     group   => $user-profile-unix::gid,
   }
 
-  include user-profile-unix::config::bash, user-profile-unix::config::ssl
+  include user-profile-unix::config::ssl
+  class {user-profile-unix::config::bash:
+    links => $user-profile-unix::links
+  }
   class {user-profile-unix::config::git:
     links => [ '.git-completion.bash', '.gitignore', '.gitconfig' ]
   }
