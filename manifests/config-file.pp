@@ -5,9 +5,11 @@ define user-profile-unix::config-file ($file=$title, $service) {
     mode   => 0755,
     source => "puppet:///modules/${module_name}/${service}/${file}",
   }
-  exec { "${configFile}":
-    refreshonly => true,
-    subscribe   => File["${configFile}"],
-    command     => "/bin/bash -c 'source ${configFile}'",
+  if ($service == "bash") {
+    exec { "${configFile}":
+      refreshonly => true,
+      subscribe   => File["${configFile}"],
+      command     => "/bin/bash -c 'source ${configFile}'",
+    }
   }
 }
