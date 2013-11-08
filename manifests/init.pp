@@ -6,5 +6,4 @@ class user-profile-unix (
 ) inherits user-profile-unix::params {
   include user-profile-unix::config
 }
-
 include user-profile-unix
