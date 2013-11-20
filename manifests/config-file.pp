@@ -1,6 +1,7 @@
-define user-profile-unix::config-file ($file=$title, $service) {
+define user-profile-unix::config-file ($service, $file=$title) {
   if (is_string($file, $service)) {
-    $home = "${user-profile-unix::config::home}"
+    include user-profile-unix::config
+    $home = lookupvar("user-profile-unix::config::home")
     $config_dir = $service ? {
       "bin" => "${home}/${service}",
       default => "${home}",
@@ -20,7 +21,7 @@ define user-profile-unix::config-file ($file=$title, $service) {
         command     => "/bin/bash -c 'source ${config_file}'",
       }
     }
-    $return = "Successfully, configured ${conf_file}"
+    $return = "Successfully, configured ${config_file}"
   } else {
     $return = "File and Service must be formated as strings"
   }
