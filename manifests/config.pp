@@ -1,6 +1,6 @@
 class user-profile-unix::config (
   $home = "/home/${user-profile-unix::username}",
-  $email = "${user-profile-unix::username}@${user-profile-unix::domain}",  
+  $email = "${user-profile-unix::username}@${user-profile-unix::domain}",
 ) inherits user-profile-unix {
   File {
     owner   => $user-profile-unix::username,
@@ -9,13 +9,13 @@ class user-profile-unix::config (
 
   include user-profile-unix::config::ssl
   class {user-profile-unix::config::bash:
-    links => [ '.bash_profile', '.bash_aliases', '.bashrc' ]
+    links => [ '.bash_profile', '.bash_aliases', '.bashrc' ],
   }
   class {user-profile-unix::config::git:
-    links => [ '.git-completion.bash', '.gitignore', '.gitconfig' ]
+    links => [ '.git-completion.bash', '.gitignore', '.gitconfig' ],
   }
   class {user-profile-unix::config::vim:
-    links => [ '.vimrc' ]
+    links => [ '.vimrc' ],
   }
 }
 #user { $username:
