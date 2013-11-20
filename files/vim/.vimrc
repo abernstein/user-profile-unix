@@ -97,3 +97,18 @@ match OverLength /\%81v.\+/
 " accept W as w
 command W w
 command Q q
+
+" match and show whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+autocmd BufWritePre *.pp,*.erb,*.rb :call TrimWhiteSpace()
+
+" trim whitespace at the end of lines
