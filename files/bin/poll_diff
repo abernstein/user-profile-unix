@@ -1,8 +1,0 @@
-#!/usr/bin/bash
-#ping g1tlfteweb01.test.glbt1.gdg
-rsync -avz abernstein@g1tlfteweb01.test.glbt1.gdg:/www/ ./www_test01/;
-rsync -avz abernstein@g1tlfteweb02.test.glbt1.gdg:/www/ ./www_test02/;
-echo "Differences from Test01 to Test02" > diff_report.log ; diff -qr www_test01/ www_test02/ | grep -v '.svn'  | grep -v '.cache' | grep -v '/hold' | sort >> diff_report.log
-echo -e "\nDifferences from Dev" >> diff_report.log; diff -qr /www/ www_test01/ | grep -v '.svn'  | grep -v '.cache' | grep -v '/hold' | sort >> diff_report.log;
-cat diff_report.log | cut -d' ' -f2 | grep 'www_';
-cat diff_report.log | cut -d' ' -f2 | grep 'www/';
