@@ -1,4 +1,4 @@
-define user-profile-unix::config-file ($service, $file=$title) {
+define user-profile-unix::config-file ($file=$title, $service) {
   if (is_string($file, $service)) {
     include user-profile-unix::config
     $home = lookupvar("user-profile-unix::config::home")
