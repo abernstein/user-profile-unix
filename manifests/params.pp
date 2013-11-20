@@ -1,9 +1,9 @@
 class user-profile-unix::params {
-  $fullname = '<FULL NAME>'
-  $username = '<USERNAME>'
-  $gid = '<GROUP>'
+  $fullname = 'Aaron Bernstein'
+  $username = 'abernstein'
+  $gid = 'gdadusers'
   $keytype = 'ssh-rsa'
-  $keyname = '<KEYNAME HERE>'
-  $key = '<PLACE KEY HERE>'
+  $keyname = 'rsa-key-20121025'
+  $key = 'AAAAB3NzaC1yc2EAAAABJQAAAIEA3bsv8PYKbIzn5WrX6XeYBJoMIHWxB+0Ch/BVNtI2sWZaGpIQtGlNulwp5fxLQYiegrneDMxaoRtinpvY0HbcwVXXYi3p8jhCtksrwqUDYSG1TkO+3gZzlW4UQYOTmx0W/1LCDcA0KcpVGTOfiiv9tBuwVt/z4VJFiv7O4vJ1Pyc='
   $links = [ ".bash_profile", ".bash_aliases", ".bashrc" ]
 }
