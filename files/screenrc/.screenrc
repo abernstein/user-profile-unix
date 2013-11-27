@@ -5,6 +5,9 @@
 startup_message off
 nethack on
 
+# auto-log
+logfile $HOME/log/screen-logs/%Y%m%d-%n.log
+
 # shows your sessions in utmp
 deflogin on
 
@@ -71,7 +74,8 @@ vbell on
 vbell_msg " !! Something interesting has happened !! "
 
 activity "activity in %n (%t) [%w:%s]~"
-bell "%c bell -> %n%f %t^G"
+bell "bell in %n (%t) [%w:%s]~"
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 
 # ------------------------------------------------------------------------------
 # SCREEN KEYBINDINGS
@@ -86,6 +90,35 @@ bind K kill
 bind I login on
 bind O login off
 bind } history
+
+# control + left; previous screen window
+bindkey ^[[1;5D prev
+# control + right; next screen window
+bindkey ^[[1;5C next
+# control + up; previous split screen
+bindkey ^[[1;5A focus prev
+# control + down; next split screen
+bindkey ^[[1;5B focus next
+# F1 kill tab
+bindkey -k k1 kill
+# F2 write paste buffer to file
+bindkey -k k2 writebuf 
+# F3 Split horizontally
+bindkey -k k3 split
+# F4 Split vertically
+bindkey -k k4 split -v
+# F5 Remove single split
+bindkey -k k5 remove
+# F6 Remove all splits
+bindkey -k k6 only
+# F7 Urlview
+bindkey -k k7 eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
+# F8 New tab
+bindkey -k k8 screen
+# F9 resize -1 line
+bindkey -k k9 resize -1
+# F10 resize +1 line
+bindkey -k k; resize +1
 
 # ------------------------------------------------------------------------------
 # TERMINAL SETTINGS
