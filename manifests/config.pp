@@ -7,6 +7,15 @@ class user-profile-unix::config (
     group   => $user-profile-unix::gid,
   }
 
+  #user { $username:
+  #  ensure  => present,
+  #  comment => $fullname,
+  #  home    => $home,
+  #  shell   => '/bin/bash',
+  #  name    => $username,
+  #  gid     => $gid,
+  #}
+  
   include user-profile-unix::config::ssl
   class {user-profile-unix::config::bash:
     links => [ '.bash_profile', '.bash_aliases', '.bashrc' ],
@@ -17,12 +26,7 @@ class user-profile-unix::config (
   class {user-profile-unix::config::vim:
     links => [ '.vimrc' ],
   }
+  class {user-profile-unix::config::screenrc:
+    links => [ '.screenrc' ],
+  }
 }
-#user { $username:
-#  ensure  => present,
-#  comment => $fullname,
-#  home    => $home,
-#  shell   => '/bin/bash',
-#  name    => $username,
-#  gid     => $gid,
-#}
