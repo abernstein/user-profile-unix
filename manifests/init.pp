@@ -9,6 +9,9 @@
 # [*fullname*]
 # [*username*]
 # [*domain*]
+# [*keytype*]
+# [*keyname*]
+# [*key*]
 #
 # === Variables
 #
@@ -32,6 +35,9 @@ class user-profile-unix (
   $fullname = $user-profile-unix::params::fullname,
   $username = $user-profile-unix::params::username,
   $domain = $user-profile-unix::params::domain,
+  $keytype = $user-profile-unix::params::keytype,
+  $keyname = $user-profile-unix::params::keyname,
+  $key = $user-profile-unix::params::key,
 ) inherits user-profile-unix::params {
   include user-profile-unix::config
 }

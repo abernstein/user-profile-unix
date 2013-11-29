@@ -1,41 +1,27 @@
-# == Class: example_class
+# == Class: user-profile-unix::config
 #
-# Full description of class example_class here.
+# Full description of class user-profile-unix::config here.
 #
 # === Parameters
 #
-# Document parameters here.
-#
-# [*ntp_servers*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*home*]
+# [*email*]
 #
 # === Variables
 #
-# Here you should define a list of variables that this module would require.
-#
-# [*enc_ntp_servers*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
-#
 # === Examples
 #
-#  class { 'example_class':
-#    ntp_servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#  class { 'user-profile-unix::config':
 #  }
 #
 # === Authors
 #
-# Author Name <author@example.com>
+# Aaron Bernstein <dev@aaronbernstein@com>
 #
 # === Copyright
 #
-# Copyright 2011 Your name here, unless otherwise noted.
+# Copyright 2013.
 #
-
 class user-profile-unix::config (
   $home = "/home/${user-profile-unix::username}",
   $email = "${user-profile-unix::username}@${user-profile-unix::domain}",
@@ -54,7 +40,11 @@ class user-profile-unix::config (
   #  gid     => $gid,
   #}
 
-  include user-profile-unix::config::ssl
+  class {user-profile-unix::config::ssl:
+    keytype => "${user-profile-unix::keytype}",
+    keyname => "${user-profile-unix::keyname}",
+    key => "${user-profile-unix::key}",
+  }
   class {user-profile-unix::config::bash:
     links => [ '.bash_profile', '.bash_aliases', '.bashrc' ],
   }
