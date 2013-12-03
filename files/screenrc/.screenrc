@@ -147,7 +147,9 @@ defnonblock 5
 # ------------------------------------------------------------------------------
 # STARTUP SCREENS
 # ------------------------------------------------------------------------------
-screen -t top 0 top
-screen -t bash 2 bash
+# Uncomment if you wish to auto launch a set of predefined screens
+# 
+#screen -t top 0 top
+#screen -t bash 2 bash
 
-screen -t <screen_name> 1 ssh <username>@<server>
+#screen -t <screen_name> 1 ssh <username>@<server>
