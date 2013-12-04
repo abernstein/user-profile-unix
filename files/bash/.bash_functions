@@ -1,5 +1,12 @@
 #!/bin/bash
 # FUNCTIONS
+function re_puppet_profile ()
+{
+  [[ $1 -gt 0 ]] && refresh=$1 || refresh=0
+  puppet apply -e "class{'profile::users':}";
+  source ~/.bash_profile;
+  if [ $refresh -gt 0 ]; then c; fi
+}
 # mdcd makes a set of folders recursively and changes to that directory
 function mdcd ()
 {
@@ -39,20 +46,24 @@ function getip ()
 # mach displays the basic information about the system
 function mach ()
 {
-  output="\nMachine information:" ; uname -a
-  output+="\nUsers logged on:" ; w -h
-  output+="\nCurrent date :" ; date
-  output+="\nMachine status :" ; uptime
-  output+="\nMemory status :" ; free
-  output+="\nFilesystem status :"; df -h
-  echo -e $output;
+  echo -e "\nMachine information:" ; uname -a
+  echo -e "\nUsers logged on:" ; w -h
+  echo -e "\nCurrent date :" ; date
+  echo -e "\nMachine status :" ; uptime
+  echo -e "\nMemory status :" ; free
+  echo -e "\nFilesystem status :"; df -h
 }
 
-function recent_logs ()
+function recent_touch ()
 {
   sudo ls -alht $1 | grep -v "../" | head
 }
 
+# Specifically works with current syntax:
+# %timestamp% %priorityName% (%priority%): <%user%> {%sessionId%} %location% || %message%" PHP_EOL
+#
+# might help with other logs with different syntax, but probably not....
+#
 function errlog_count ()
 {
   if [ -n $1 ]; then
