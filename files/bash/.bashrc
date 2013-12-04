@@ -19,19 +19,16 @@ export GREP_OPTIONS='--color=auto --exclude=*.{pyc,swp} --exclude=*.{git,svn}* -
 #export PS1="\e[0;31m[\u@\h \W]\$ \e[m"
 #export PS1="\[$(tput setaf 2)\]\u@\h:\w $ \[$(tput sgr0)\]"
 
-# VARIABLES/FUNCTIONS
-function mdcd () 
-{ 
-  mkdir -p $1 && cd $1 
-}
-function cdls () 
-{ 
-  cd $1 && ls 
-}
+# VARIABLES
+
+#FUNCTIONS
+if [ -f ~/.bash_functions ]; then
+  . ~/.bash_functions
+fi
 
 # ALIASES
 if [ -f ~/.bash_aliases ]; then
-    	. ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 source ~/.git-completion.bash
