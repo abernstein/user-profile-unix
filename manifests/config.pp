@@ -46,7 +46,7 @@ class user-profile-unix::config (
     key => "${user-profile-unix::key}",
   }
   class {user-profile-unix::config::bash:
-    links => [ '.bash_profile', '.bash_aliases', '.bashrc' ],
+    links => [ '.bash_profile', '.bash_aliases', '.bash_functions', '.bashrc' ],
   }
   class {user-profile-unix::config::git:
     links => [ '.git-completion.bash', '.gitignore', '.gitconfig' ],
