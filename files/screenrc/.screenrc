@@ -90,19 +90,25 @@ bind K kill
 bind I login on
 bind O login off
 bind } history
+#bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
+
+#split window
+bind s eval 'split' focus screen
+bind v eval 'split -v' focus screen
 
 # control + left; previous screen window
-bindkey ^[[1;5D prev
+bindkey OD prev
 # control + right; next screen window
-bindkey ^[[1;5C next
+bindkey OC next
 # control + up; previous split screen
-bindkey ^[[1;5A focus prev
+bindkey OA focus prev
 # control + down; next split screen
-bindkey ^[[1;5B focus next
+bindkey OB focus next
+
 # F1 kill tab
 bindkey -k k1 kill
 # F2 write paste buffer to file
-bindkey -k k2 writebuf 
+bindkey -k k2 writebuf
 # F3 Split horizontally
 bindkey -k k3 split
 # F4 Split vertically
@@ -119,6 +125,8 @@ bindkey -k k8 screen
 bindkey -k k9 resize -1
 # F10 resize +1 line
 bindkey -k k; resize +1
+
+
 
 # ------------------------------------------------------------------------------
 # TERMINAL SETTINGS
