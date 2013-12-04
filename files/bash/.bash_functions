@@ -2,7 +2,7 @@
 # FUNCTIONS
 function re_puppet_profile ()
 {
-  [[ $1 -gt 0 ]] && refresh=$1 || refresh=0
+  refresh=$([[ $1 -gt 0 ]] && echo $1 || echo 0)
   puppet apply -e "class{'profile::users':}";
   source ~/.bash_profile;
   if [ $refresh -gt 0 ]; then c; fi
@@ -40,7 +40,8 @@ function rpass ()
 # getip displays the ipaddress of a given interface
 function getip ()
 {
-  /sbin/ifconfig ${1:-eth0} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}';
+  ipaddr=`/sbin/ifconfig ${1:--a} | awk '/inet addr/ {print $2}' | awk -F: '{print $2}'`
+  echo -e $ipaddr
 }
 
 # mach displays the basic information about the system
