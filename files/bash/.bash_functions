@@ -75,3 +75,8 @@ function errlog_count ()
     echo "Usage: `basename $0` /var/log/messages"
   fi
 }
+
+function find_hooks ()
+{
+  find ./ -iname *.hook
+}
