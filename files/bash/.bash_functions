@@ -80,3 +80,8 @@ function find_hooks ()
 {
   find ./ -iname *.hook
 }
+
+function find_lg_files ()
+{
+  for i in `find ./ -size +100M`; do du -sh $i; done
+}
