@@ -68,6 +68,9 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" toggle the paste settings to help with indentation
+set pastetoggle=<F10>
+
 " Formatting
 set cindent
 
